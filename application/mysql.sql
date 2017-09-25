@@ -24,8 +24,8 @@ USE `sigov` ;
 -- Table `sigov`.`perfis`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sigov`.`perfis` (
-  `idPerfil` INT NOT NULL AUTO_INCREMENT COMMENT = 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada perfil cadastrado na aplicação.',
-  `descricaoPerfil` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo a descrição de cada perfil de usuário.',
+  `idPerfil` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada perfil cadastrado na aplicação.',
+  `descricaoPerfil` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição de cada perfil de usuário.',
   PRIMARY KEY (`idPerfil`))
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `sigov`.`municipios` (
 -- Table `sigov`.`areaSoftwares`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sigov`.`areaSoftwares` (
-  `idAreaSoftwares` INT NOT NULL AUTO_INCREMENT COMMENT = 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada área de software cadastrada na aplicação.',
-  `descricaoArea` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo a descrição da área de atuação do software.',
+  `idAreaSoftwares` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada área de software cadastrada na aplicação.',
+  `descricaoArea` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição da área de atuação do software.',
   PRIMARY KEY (`idAreaSoftwares`))
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8
@@ -110,24 +110,24 @@ CREATE TABLE IF NOT EXISTS `sigov`.`areaSoftwares` (
 -- Table `sigov`.`programas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sigov`.`programas` (
-  `idProgramas` INT NOT NULL AUTO_INCREMENT COMMENT = 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada programa cadastrado na aplicação.',
-  `nomeSoftware` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(255) contendo o nome do Software.',
-  `descricaoSoftware` TEXT CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo TEXT contendo a descrição do programa.',
-  `requerimentoMemoria` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de Memória RAM para utilização do software.',
-  `requerimentoProcessador` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de frequência do processador para utilização do software.',
-  `requerimentoDisco` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de espaço em disco para a utilização do software.',
-  `requerimentoSoftware` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(255) contendo os requerimentos mínimos de software e sistemas operacionais.',
-  `requerimentoLinguagem` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(255) contendo o requerimentos da(s) linguagem(ens) de programação para utilização do software.',
-  `dataPublicacao` DATE NOT NULL COMMENT = 'Campo do tipo DATE contendo a data de publicação do software.',
-  `ultimaAtualizacao` DATE NULL COMMENT = 'Campo do tipo DATE contendo a data de última atualização do software.',
-  `areaSoftware` INT NOT NULL COMMENT = 'Chave Estrangeira (FK) do tipo INT utilizado classificar o tipo de software de acordo com os modelos descritos da tabela areaSoftware.',
-  `siteSoftware` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo o endereço para o site do desenvolvedor do software.',
-  `manualSoftware` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT = 'Campo do tipo VARCHAR(45) contendo o endereço/link para o manual do software',
-  `observacoes` TEXT CHARACTER SET 'utf8' NULL COMMENT = 'Campo do tipo TEXT que permite ao usuário inserir informações não contempladas em outros campos.',
-  `responsavelCadastro` INT NOT NULL COMMENT = 'Chave Estrangeira (FK) do tipo INT utilizado para informar o responsável pelo registro software.',
-  `criadoEm` TIMESTAMP NOT NULL COMMENT = 'Campo do tipo Timestamp() informando a data/hora da criação do dado no DB.',
-  `responsavelEdicao` INT NULL COMMENT = 'Chave Estrangeira (FK) do tipo INT utilizado para informar o responsável pela edição do software.',
-  `editadoEm` TIMESTAMP NULL COMMENT = 'Campo do tipo Timestamp() informando a data/hora da edição do dado no DB.',
+  `idProgramas` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada programa cadastrado na aplicação.',
+  `nomeSoftware` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) contendo o nome do Software.',
+  `descricaoSoftware` TEXT CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo TEXT contendo a descrição do programa.',
+  `requerimentoMemoria` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de Memória RAM para utilização do software.',
+  `requerimentoProcessador` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de frequência do processador para utilização do software.',
+  `requerimentoDisco` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de espaço em disco para a utilização do software.',
+  `requerimentoSoftware` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) contendo os requerimentos mínimos de software e sistemas operacionais.',
+  `requerimentoLinguagem` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) contendo o requerimentos da(s) linguagem(ens) de programação para utilização do software.',
+  `dataPublicacao` DATE NOT NULL COMMENT 'Campo do tipo DATE contendo a data de publicação do software.',
+  `ultimaAtualizacao` DATE NULL COMMENT 'Campo do tipo DATE contendo a data de última atualização do software.',
+  `areaSoftware` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado classificar o tipo de software de acordo com os modelos descritos da tabela areaSoftware.',
+  `siteSoftware` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o endereço para o site do desenvolvedor do software.',
+  `manualSoftware` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o endereço/link para o manual do software',
+  `observacoes` TEXT CHARACTER SET 'utf8' NULL COMMENT 'Campo do tipo TEXT que permite ao usuário inserir informações não contempladas em outros campos.',
+  `responsavelCadastro` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para informar o responsável pelo registro software.',
+  `criadoEm` TIMESTAMP NOT NULL COMMENT 'Campo do tipo Timestamp() informando a data/hora da criação do dado no DB.',
+  `responsavelEdicao` INT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para informar o responsável pela edição do software.',
+  `editadoEm` TIMESTAMP NULL COMMENT 'Campo do tipo Timestamp() informando a data/hora da edição do dado no DB.',
   PRIMARY KEY (`idProgramas`),
   INDEX `fk_responsavelCadastro_usuarios_fk_idx` (`responsavelCadastro` ASC),
   INDEX `fk_responsavelEdicao_usuarios_fk_idx` (`responsavelEdicao` ASC),
