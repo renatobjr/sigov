@@ -161,9 +161,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sigov`;
-INSERT INTO `sigov`.`perfis` (`idPerfil`, `descricaoPerfil`) VALUES (1, 'Gestor');
-INSERT INTO `sigov`.`perfis` (`idPerfil`, `descricaoPerfil`) VALUES (2, 'Pesquisador');
-INSERT INTO `sigov`.`perfis` (`idPerfil`, `descricaoPerfil`) VALUES (3, 'Pesquisador de Software');
+INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Admin');
+INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Gestor');
+INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador');
+INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador de Software');
 
 COMMIT;
 
@@ -173,11 +174,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sigov`;
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (1, 'Saúde');
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (2, 'Educação');
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (3, 'Patrimônio');
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (4, 'Execução');
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (5, 'Folha de pagamento');
-INSERT INTO `sigov`.`areaSoftwares` (`idAreaSoftwares`, `descricaoArea`) VALUES (6, 'Cadastro de funcionários');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Saúde');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Educação');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Patrimônio');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Execução');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Folha de pagamento');
+INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Cadastro de funcionários');
 
 COMMIT;
