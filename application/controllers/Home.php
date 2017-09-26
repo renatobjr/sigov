@@ -34,6 +34,7 @@ class Home extends CI_Controller
 
     public function dashboard()
     {
+        // Encaminhamento para a dashboard view
         $this->blade->view('dashboard.index', $this->data);
     }
 }
