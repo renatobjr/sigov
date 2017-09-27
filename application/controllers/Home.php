@@ -37,4 +37,19 @@ class Home extends CI_Controller
         // Encaminhamento para a dashboard view
         $this->blade->view('dashboard.index', $this->data);
     }
+
+    public function equipe()
+    {
+        // Realizando o load do Usuari_model
+        $this->load->model('usuario_model');
+
+        // Criando um array com o conteudo de todos os gestores
+        $this->data['gestores'] = $this->usuario_model->get_all_gestores();
+
+        // Criando um array com o conteudo de todos os Pesquisadores do PLi
+        $this->data['pli'] = $this->usuario_model->get_all_pli();
+
+        // Encaminhamento para a equipe view
+        $this->blade->view('dashboard.usuario', $this->data);
+    }
 }

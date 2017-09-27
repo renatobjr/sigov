@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="103.21286mm"
-   height="102.76171mm"
-   viewBox="0 0 365.71486 364.1163"
+   width="198.46371mm"
+   height="254.24344mm"
+   viewBox="0 0 703.21789 900.86258"
    id="svg2"
    version="1.1"
    inkscape:version="0.92.1 r15371"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="131.33454"
-     inkscape:cy="210.80501"
+     inkscape:zoom="0.35"
+     inkscape:cx="950.70131"
+     inkscape:cy="430.84459"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -56,62 +56,67 @@
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-174.28517,-163.79077)">
+     transform="translate(-27.699487,122.05406)">
     <path
-       style="fill:#005c94;stroke-width:1.00725377"
-       d="m 471.42774,527.90708 v 0 c 37.98857,0 68.57228,-29.40695 68.57228,-67.94863 V 230.95717 H 174.28517 v 0 229.00128 c 0,38.54168 30.58369,67.94863 68.57226,67.94863"
-       id="path593"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       id="path4616"
+       d="M 660.04939,13.802323 729.97685,316.80312 558.69565,151.96159 Z"
+       style="fill:#9eabb0;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cccc" />
     <path
-       d="m 174.28544,235.21961 v -2.85741 c 0,-37.98857 30.58286,-68.57143 68.57143,-68.57143 v 0 h 228.57144 c 37.98857,0 68.57143,30.58286 68.57143,68.57143 l -10e-6,2.85741"
-       style="fill:#0e232e"
-       id="path3343"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       id="path4620"
+       d="M 730.31224,316.8031 534.43633,561.72621 353.41347,509.6342 622.64654,186.4482 Z"
+       style="fill:#364e59;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#0e232e;stroke-width:1.06666672"
-       d="m 282.15625,388.39073 v 0 h 34.79583"
-       id="path591"
-       transform="matrix(0.93749999,0,0,0.93749999,174.28517,163.79077)"
-       inkscape:connector-curvature="0" />
+       style="fill:#b50000;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 28.3046,316.8031 224.1805,561.72621 404.31568,512.47971 111.52782,155.64462 Z"
+       id="path4618"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#0e232e;stroke-width:1.06666672"
-       d="m 73.143745,388.39073 c 0,0 0,0 0,0 h 34.795845"
-       id="rect3336"
-       transform="matrix(0.93749999,0,0,0.93749999,174.28517,163.79077)"
-       inkscape:connector-curvature="0" />
+       style="fill:#ffa600;fill-opacity:1;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 377.79918,-121.29682 135.63496,186.44819 377.79918,480.75461 622.64654,186.4482 Z"
+       id="path4606"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#2d2d2d;fill-opacity:1;stroke:none;stroke-width:0.93417984px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 377.79918,480.75461 224.1805,561.72621 H 534.43633 Z"
+       id="path4612"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:13.58475113px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.13206255px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="184.73412"
-       y="375.90323"
-       id="text3346"
-       transform="scale(0.98871824,1.0114105)"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:257.24429321px;line-height:1.25;font-family:'Anisha Free';-inkscape-font-specification:'Anisha Free';letter-spacing:0px;word-spacing:0px;fill:#0e232e;fill-opacity:1;stroke:none;stroke-width:6.43110704"
+       x="19.514065"
+       y="772.89191"
+       id="text4641"><tspan
          sodipodi:role="line"
-         id="tspan3348"
-         x="184.73412"
-         y="375.90323"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.19787598px;line-height:1.25;font-family:Carlito;-inkscape-font-specification:Carlito;fill:#ffffff;stroke-width:1.13206255px">SIGov</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:13.58475113px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.13206255px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="185.67087"
-       y="420.18939"
-       id="text3346-4"><tspan
-         sodipodi:role="line"
-         id="tspan3348-6"
-         x="185.67087"
-         y="420.18939"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.0046463px;line-height:1.25;font-family:Carlito;-inkscape-font-specification:Carlito;fill:#ffffff;stroke-width:1.13206255px">Sistema de Informação</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:13.58475113px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.13206255px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="185.24892"
-       y="457.13684"
-       id="text3346-4-2"><tspan
-         sodipodi:role="line"
-         id="tspan3348-6-5"
-         x="185.24892"
-         y="457.13684"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.65517426px;line-height:1.25;font-family:Carlito;-inkscape-font-specification:Carlito;fill:#ffffff;stroke-width:1.13206255px">Governamentais em TI</tspan></text>
+         id="tspan4639"
+         x="19.514065"
+         y="772.89191"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';fill:#0e232e;stroke-width:6.43110704"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L Bold';fill:#0e232e;stroke-width:6.43110704"
+   id="tspan4643">SIG</tspan>ov</tspan></text>
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4610"
+       d="M 622.64654,186.4482 660.04939,13.802323 377.79918,-121.29682 Z"
+       style="fill:#fce863;fill-opacity:1;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:#fce863;fill-opacity:1;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 135.63496,186.44819 98.232086,13.802313 377.79918,-121.29682 Z"
+       id="path4608"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:#dc0000;stroke:none;stroke-width:0.93992275px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 98.232086,13.802303 28.30459,316.8031 135.63496,186.44819 Z"
+       id="path4614"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
   </g>
 </svg>

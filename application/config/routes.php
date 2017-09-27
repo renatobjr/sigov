@@ -51,8 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'home';
 $route['dashboard'] = 'home/dashboard';
+$route['dashboard/equipe'] = 'home/equipe';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 // Rotas para o controller Usuario
 $route['login'] = 'usuario/login';
 $route['logout'] = 'usuario/logout';
+$route['criar_usuario'] = 'usuario/criarUsuario';

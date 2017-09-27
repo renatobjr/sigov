@@ -36,10 +36,8 @@
                         <li class="list-group-item">
                             <div class="form-group">
                                 <label for="emailUsuario" class="control-label">Login</label>
-                                <input type="text" name="emailUsuario" class="form-control" placeholder="Informe seu e-mail de acesso">
+                                <input type="text" name="emailUsuario" value="{{ set_value('emailUsuario') }}" class="form-control" placeholder="Informe seu e-mail de acesso">
                             </div>
-                        </li>
-                        <li class="list-group-item">
                             <div class="form-group">
                                 <label for="password" class="control-label">Senha</label>
                                 <input type="password" name="password" class="form-control" placeholder="Informe sua senha">
@@ -66,13 +64,13 @@
             @if(isset($_SESSION['loginErro']))
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Ops! </strong><a href="#" class="alert-link">{{ $_SESSION['loginErro'] }}</a>
+                    <strong>Ops! </strong><br><p>{{ $_SESSION['loginErro'] }}</p>
                 </div>
             @endif
             @if(isset($_SESSION['erroAutorizacao']))
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Ops! </strong><a href="#" class="alert-link">{{ $_SESSION['erroAutorizacao'] }}</a>
+                    <strong>Ops! </strong><br><p>{{ $_SESSION['erroAutorizacao'] }}</p>
                 </div>
                 {!! session_unset($_SESSION['erroAutorizacao']) !!}
             @endif

@@ -8,12 +8,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Usuario extends CI_Controller
 {
+
+    /**
+     * Usuario constructor.
+     *
+     * Carrega o modelo inicial da classe durante a sua construção
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->model('usuario_model');
     }
-
     /**
      * Variável global para informações compartilhadas entre as views
      *
@@ -72,7 +77,12 @@ class Usuario extends CI_Controller
             }
         }
     }
-
+    /**
+     * Método para realizar o logout destruindo a sessão do usuário
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     */
     public function logout()
     {
         $this->session->unset_userdata('idUsuario');
@@ -81,5 +91,32 @@ class Usuario extends CI_Controller
         $this->session->unset_userdata('isLogged');
 
         redirect();
+    }
+    /**
+     * Método utilizado para adicionar um novo usuário ao DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     */
+    public function criarUsuario()
+    {
+        // Definindo as validações para o formulário de criação de novos usuários
+        $this->form_validation->set_rules('nomeUsuario','Nome do usuário','required|xss_clean');
+        $this->form_validation->set_rules('emailUsuario','E-mail do usuário','required|xss_clean|valid_email');
+
+        // Realizando as verificações do formulário
+        if($this->form_validation->run() === FALSE){
+            // Retornando o usuário a página de Login e apresentando os erros
+            $this->blade->view('dashboard.usuario',$this->data);
+        } else {
+            // Inserindo o novo usuário no DB a partir do método criarUsuario
+            $this->usuario_model->criarUsuario();
+
+            // Retornando ao usuário a informação de sucesso ao inserir
+            $this->session->set_flashdata('sucessoAddUsuario',$_POST['nomeUsuario'].' foi adicionado com sucesso!');
+
+            // Redirecionando para a página de usuário
+            redirect('dashboard/equipe');
+        }
     }
 }
