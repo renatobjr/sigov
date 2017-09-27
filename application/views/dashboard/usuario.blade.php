@@ -1,5 +1,5 @@
 @extends('dashboard.templates.header')
-{{-- TODO: implmentar os loops necessários para exibição dos dados --}}
+
 @section('main')
     {!! validation_errors(
         '<div class="alert alert-dismissible alert-danger">
@@ -64,6 +64,7 @@
                         </h4>
                     </div>
                     <div id="collapseGestor" class="panel-collapse collapse in fade" role="tabpanel" aria-labelledby="panelGestor">
+                        {{-- Loop inicial para exibição de dados dos gestores --}}
                         @if(empty($gestores))
                             <div class="panel-body">
                                 <h5>Ainda não há gestores cadastrados!</h5>
@@ -102,6 +103,7 @@
                                 </h4>
                             </div>
                             <div id="collapsePli" class="panel-collapse collapse in fade" role="tabpanel" aria-labelledby="panelPli">
+                                {{-- Loop inicial para exibição dos dados dos Pli --}}
                                 @if(empty($pli))
                                     <div class="panel-body">
                                         <h6>Ainda não há Pesquisadores da equipe PLi cadastrados!</h6>
@@ -128,6 +130,7 @@
                     </div>
                 </div>
                 {{-- Membros da equipe de cadstramento de software --}}
+                {{-- TODO: implmentar os loops necessários para exibição da PS --}}
                 <div class="col-lg-6">
                     <div class="panel-group" id="accordionPs" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
