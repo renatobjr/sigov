@@ -34,22 +34,39 @@ CREATE TABLE IF NOT EXISTS `sigov`.`perfis` (
 
 
 -- -----------------------------------------------------
+-- Table `sigov`.`equipes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sigov`.`equipes` (
+  `idEquipe` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de das equipes cadastradas.',
+  `descricaoEquipe` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição de cada equipe.',
+  PRIMARY KEY (`idEquipe`))
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8
+  COMMENT = 'Tabela para armazenar as equipes disponíveis'
+  PACK_KEYS = DEFAULT;
+
+
+-- -----------------------------------------------------
 -- Table `sigov`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sigov`.`usuarios` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT auto incrementada com o ID de cada Usuário cadastrado na aplicação.',
+  `equipe` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para definir a equipe do usuário e conceder acesso a funcionalidades.',
   `perfil` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para definir o perfil do usuário e conceder acesso a funcionalidades.',
   `nomeUsuario` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) para inserção do nome completo do Usuário.',
   `emailUsuario` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) para inserção do e-mail do Usuário.',
   `password` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) para inserção da senha de acesso ao Sistema com encriptação fornecida a nível de aplicação.',
-  `linkReset` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo  do tipo VARCHAR(45) contendo o link para cadastramento/mudança de senha criado randomicamente a cada inserção/mudança do campo password com encriptação fornecida no nível da aplicação.',
+  `token` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo  do tipo VARCHAR(45) contendo o link para cadastramento/mudança de senha criado randomicamente a cada inserção/mudança do campo password com encriptação fornecida no nível da aplicação.',
   PRIMARY KEY (`idUsuario`, `perfil`),
   UNIQUE INDEX `nomeUsuario_UNIQUE` (`nomeUsuario` ASC),
   UNIQUE INDEX `emailUsuario_UNIQUE` (`emailUsuario` ASC),
   INDEX `fk_usuarios_perfis_idx` (`perfil` ASC),
   CONSTRAINT `fk_usuarios_perfis`
   FOREIGN KEY (`perfil`)
-  REFERENCES `sigov`.`perfis` (`idPerfil`)
+  REFERENCES `sigov`.`perfis` (`idPerfil`),
+  CONSTRAINT `fk_usuarios_equipes`
+  FOREIGN KEY (`equipe`)
+  REFERENCES `sigov`.`equipes` (`idEquipe`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB
@@ -164,7 +181,18 @@ USE `sigov`;
 INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Admin');
 INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Gestor');
 INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador');
-INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador de Software');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `sigov`.`equipes`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sigov`;
+INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Administrador do Sistema');
+INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Levantamento de Informações - PLi');
+INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Pesquisa de Software - PS');
 
 COMMIT;
 
@@ -182,3 +210,13 @@ INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Folha de pagament
 INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Cadastro de funcionários');
 
 COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `sigov`.`usuarios`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sigov`;
+INSERT INTO `sigov`.`usuarios` (`equipe`,`perfil`,`nomeUsuario`,`emailUsuario`,`password`,`token`) VALUES (1,1,'Administrador','renato.bonfim.jr@cciao.org',md5('monitor'),'da39a3ee5e6b4b0d3255bfef95601890afd80709');
+
+COMMIT;
+

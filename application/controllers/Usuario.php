@@ -10,7 +10,7 @@ class Usuario extends CI_Controller
 {
 
     /**
-     * Usuario constructor.
+     * Function __construct().
      *
      * Carrega o modelo inicial da classe durante a sua construção
      */
@@ -30,7 +30,9 @@ class Usuario extends CI_Controller
         'title' => 'SIGov 1.0'
     );
     /**
-     * Método para realizar o login do usuário e definir sua dashboard a partir do perfil
+     * Function login()
+     *
+     * Método responsável pelo processo de login do usuário
      *
      * @since 1.0
      * @author Renato Bonfim Jr.
@@ -59,7 +61,6 @@ class Usuario extends CI_Controller
                     'nomeUsuario'   => $login['nomeUsuario'],
                     'isLogged'      => TRUE
                 );
-
                 // Cria a sessão do usuário e determina sua view
                 $this->session->set_userdata($dataUsuario);
 
@@ -78,7 +79,9 @@ class Usuario extends CI_Controller
         }
     }
     /**
-     * Método para realizar o logout destruindo a sessão do usuário
+     * Function logout()
+     *
+     * Método responsável pelo processo de logout do usuário destruindo os itens de sua sessão
      *
      * @since 1.0
      * @author Renato Bonfim Jr.
@@ -93,7 +96,9 @@ class Usuario extends CI_Controller
         redirect();
     }
     /**
-     * Método utilizado para adicionar um novo usuário ao DB
+     * Function criarUsuario()
+     *
+     * Método responsável pelo processo de criação de um novo usuário no DB
      *
      * @since 1.0
      * @author Renato Bonfim Jr.
@@ -110,7 +115,10 @@ class Usuario extends CI_Controller
             $this->blade->view('dashboard.usuario',$this->data);
         } else {
             // Inserindo o novo usuário no DB a partir do método criarUsuario
-            $this->usuario_model->criarUsuario();
+            $dadosUsuario = $this->usuario_model->criarUsuario();
+
+            // Enviando o email para o usuário
+            $this->enviarEmail($dadosUsuario['nomeUsuario'], $dadosUsuario['emailUsuario'], $dadosUsuario['token']);
 
             // Retornando ao usuário a informação de sucesso ao inserir
             $this->session->set_flashdata('sucessoAddUsuario',$_POST['nomeUsuario'].' foi adicionado com sucesso!');
@@ -118,5 +126,75 @@ class Usuario extends CI_Controller
             // Redirecionando para a página de usuário
             redirect('dashboard/equipe');
         }
+    }
+    /**
+     * Function criarSenha()
+     *
+     * Método responsável pelo processo de criação da senha após envio do link pelo método criarUsuario()
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     */
+    public function criarSenha()
+    {
+        // Definindo as validações para o formulário de criação de novos usuários
+        $this->form_validation->set_rules('password','Senha','trim|required|xss_clean|min_length[8]');
+        $this->form_validation->set_rules('confirmarPassword','Confirmação da Senha','trim|required|xss_clean|matches[password]');
+
+        // Realizando as verificações do formulário
+        if($this->form_validation->run() === FALSE) {
+            // Retornando o usuario a página de cadastro de senha e apresentando erros
+            $this->blade->view('registro', $this->data);
+        } else {
+            // Inserindo a senha para o usuário no DB a partir do método criarSenha
+            $this->usuario_model->criarSenha();
+
+            // Retornando ao usuários a informação de sucesso ao atualizar a senha
+            $this->session->set_flashdata('sucessoCadastraSenha','Sua senha foi cadastrada com sucesso!');
+
+            // Redirecionando o usuário para a tela de login
+            redirect();
+        }
+    }
+    /**
+     * Function enviarEmail()
+     *
+     * Método responsável pelo processo de envio de email após a criação do usuário no DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $nomeUsuario
+     * @param $emailUsuario
+     * @param $token
+     */
+    public function enviarEmail($nomeUsuario, $emailUsuario, $token)
+    {
+        // Configurações iniciais da biblioteca Email
+        $config['protocol']     = 'smtp';
+        $config['smtp_host']    = 'ssl://smtp.googlemail.com';
+        $config['smtp_port']    = '465';
+        $config['smtp_timeout'] = '60';
+        $config['smtp_user']    = 'sistema.sigov@gmail.com';
+        $config['smtp_pass']    = 'sistema.sigovpb';
+        $config['mailtype']     = 'html';
+        $config['charset']      = 'utf-8';
+
+        // Iniciando a biblioteca email
+        $this->email->initialize($config);
+
+        // Configuração de envio do email
+        $this->email->from('sistema.sigov@gmail.com','SIGov');
+        $this->email->to($emailUsuario);
+        $this->email->subject('Confirmação de cadastro - SIGov');
+        $data = array(
+            'nomeUsuario'   => $nomeUsuario,
+            'emailUsuario'  => $emailUsuario,
+            'token'         => $token
+        );
+        $mensagem = $this->load->view('dashboard/templates/email.php',$data,TRUE);
+        $this->email->message($mensagem);
+
+        // Enviando o email para o usuário
+        $this->email->send();
     }
 }

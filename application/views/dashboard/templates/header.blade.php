@@ -43,7 +43,7 @@
 
             {{-- Itens do navbar --}}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                {{-- Menu do cadastramento de usuarios e dados da pesquisa: disponivel somente para o Administrador/gestor[1 - 2] --}}
+                {{-- Menu do cadastramento de usuarios e dados da pesquisa: disponivel somente para o Administrador/gestor[1] --}}
                 @if($_SESSION['perfil'] == 1)
                     <ul class="nav navbar-nav">
                         <li><a href="{{ base_url('dashboard/equipe') }}"><i class="fa fa-users fa-fw"></i> Equipe</a></li>
@@ -60,12 +60,16 @@
                     </ul>
                 @endif
                 {{-- Menu para Cadastro de municipios: disponivel somente para o PLI[3] --}}
-                @if($_SESSION['perfil'] == 3)
-                    <li><a href="#">Municípios</a></li>
+                @if($_SESSION['perfil'] == 2 && $_SESSION['equipe'] == 2)
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Municípios</a></li>
+                    </ul>
                 @endif
                 {{-- Menu para Cadastro de software: disponivel somente para o PS[4] --}}
                 @if($_SESSION['perfil'] == 3)
-                    <li><a href="#">Software</a></li>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Software</a></li>
+                    </ul>
                 @endif
                 {{-- Menu do usuário --}}
                 <ul class="nav navbar-nav navbar-right">

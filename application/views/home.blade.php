@@ -60,13 +60,20 @@
                     <strong>Ops! </strong>Verifique se está tudo certo e tente novamente.<br> ',
                 '</div>'
             ) !!}
-            {{-- Mensagem de erro para erro durante autenticação --}}
+            {{-- Mensagem de sucesso para cadastro da senha --}}
+            @if(isset($_SESSION['sucessoCadastraSenha']))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Perfeito! </strong><br><p>{{ $_SESSION['sucessoCadastraSenha'] }}</p>
+                </div>
+            @endif{{-- Mensagem de erro para falha durante autenticação --}}
             @if(isset($_SESSION['loginErro']))
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Ops! </strong><br><p>{{ $_SESSION['loginErro'] }}</p>
                 </div>
             @endif
+            {{-- Mensagem de erro para falha de autenticação  --}}
             @if(isset($_SESSION['erroAutorizacao']))
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>

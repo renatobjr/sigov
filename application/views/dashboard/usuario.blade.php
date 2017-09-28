@@ -25,7 +25,7 @@
                 </div>
                 <ul class="list-group">
                     {{-- Formulário para a criação de novos usuários --}}
-                    {!! form_open('criar_usuario') !!}
+                    {!! form_open('criar-usuario') !!}
                     <li class="list-group-item">
                         <div class="form-group">
                             <label for="nomeUsuario" class="control-label">Nome</label>
@@ -35,13 +35,25 @@
                             <label for="emailUsuario" class="control-label">Endereço de email</label>
                             <input type="email" name="emailUsuario" value="{{ set_value('nome_pessoa') }}" class="form-control" placeholder="Informe um email válido">
                         </div>
-                        <div class="form-group">
-                            <label for="perfil" class="control-label">Selecione o perfil</label>
-                            <select name="perfil" class="form-control">
-                                <option value="2">Gestor</option>
-                                <option value="3">Pesquisador de Informações - PLi</option>
-                                <option value="4">Pesquisador de Software - PS</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="perfil" class="control-label">Selecione o Perfil</label>
+                                    <select name="perfil" class="form-control">
+                                        <option value="2">Gestor</option>
+                                        <option value="3">Pesquisador</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="equipe" class="control-label">Selecione a Equipe</label>
+                                    <select name="equipe" class="form-control">
+                                        <option value="2">PLi - Municípios</option>
+                                        <option value="3">PS - Software</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -97,7 +109,7 @@
                             <div class="panel-heading" role="tab" id="panelPli">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordionPli" href="#collapsePli" aria-expanded="true" aria-controls="collapsePli" style="text-decoration: none">
-                                        <span class="lead">Equipe de Levantamento de Informações</span>
+                                        <span class="lead">Equipe de Levantamento</span>
                                     </a>
                                     <p class="lead pull-right"><i class="fa fa-map-marker"></i></p>
                                 </h4>
@@ -162,6 +174,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
