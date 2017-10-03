@@ -62,8 +62,17 @@ class Home extends CI_Controller
         // Criando um array com o conteudo de todos os Pesquisadores do PLi
         $this->data['pli'] = $this->usuario_model->getAllPli();
 
+        // Criando um array com o conteudo de todos os Pesquisadores do PS
+        $this->data['ps'] = $this->usuario_model->getAllPs();
+
         // Encaminhamento para a equipe view
-        $this->blade->view('dashboard.usuario', $this->data);
+        $this->blade->view('dashboard.usuarios', $this->data);
+    }
+
+    public function municipio()
+    {
+        // Encaminhamento para a municipio view
+        $this->blade->view('dashboard.municipios', $this->data);
     }
     /**
      * Function registro()
@@ -94,5 +103,11 @@ class Home extends CI_Controller
             // Encaminhamento para a registro view
             $this->blade->view('registro', $this->data);
         }
+    }
+
+    public function redefinirSenha()
+    {
+        // Encaminhamento para a redifinição da senha
+        $this->blade->view('redefinir', $this->data);
     }
 }

@@ -61,11 +61,45 @@ class Usuario_model extends CI_Model
      */
     public function getAllPli()
     {
-        // Recuperando todos os registros reelativos a Pesquisadores do PLi no DB
+        // Recuperando todos os registros relativos a Pesquisadores do PLi no DB
         $query = $this->db->get_where('usuarios', array('perfil' => 3, 'equipe' => 2));
 
         // Retornando o array com os dados de todos os registros
         return $query->result_array();
+    }
+    /**
+     * Function getAllPs()
+     *
+     * Método responsável pela recuperação de todos os registrio de Pesquisadores do PS no Db
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return array $query
+     */
+    public function getAllPs()
+    {
+        // Recuperad todos os registros relativos a Pesquisadores do PS no DB
+        $query = $this->db->get_where('usuarios', array('perfil' => 3, 'equipe' => 3));
+
+        // Retornando o array com os dados de todos os registrios
+        return $query->result_array();
+    }
+
+    /**
+     * Function getIdUsuario()
+     *
+     * Método responsável por buscar um ID especifico de um usuário no DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $idUsuario
+     * @return mixed
+     */
+    public function getIdUsuario($idUsuario)
+    {
+        $query = $this->db->get_where('usuarios', array('idUsuario' => $idUsuario));
+
+        return $query->row();
     }
     /**
      * Function verificarToken()
@@ -137,7 +171,7 @@ class Usuario_model extends CI_Model
      */
     public function criarUsuario()
     {
-        // Recebendo os dados obtidos a partir do formulário de login
+        // Recebendo os dados obtidos a partir do formulário de criação de usuario
         $dataUsuario = array(
             'nomeUsuario'   => $_POST['nomeUsuario'],
             'emailUsuario'  => $_POST['emailUsuario'],
@@ -184,5 +218,83 @@ class Usuario_model extends CI_Model
 
         // Atualizando a senha do usuario e criando um novo token
         $this->db->update('usuarios', $dataUsuario, array('idUsuario' => $idUsuario));
+    }
+
+    /**
+     * Function atualizarUsuario()
+     *
+     * Método responsável por realizar a atualização dos dados do usuário a partir da requisiaçao Ajax
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $idUsuario
+     * @return mixed
+     */
+    public function atualizarUsuario($idUsuario)
+    {
+        // Recebendo os dados obtidos a partir do formulário de atualização do usuário
+        $dataUsuario = array(
+            'nomeUsuario'   => $_POST['nomeUsuario'],
+            'equipe'        => $_POST['equipe'],
+            'perfil'        => $_POST['perfil']
+        );
+
+        // Atualizando o registro do usuário
+        $this->db->update('usuarios', $dataUsuario, $idUsuario);
+
+        // Retornando os dados modificados
+        return $this->db->affected_rows();
+    }
+
+    /**
+     * Funtion buscarEmail()
+     *
+     * Método responsável por validar a parmissão de alteração de senha de um usuário a partir do email informado
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return bool
+     */
+    public function buscarEmail()
+    {
+        // Recebendo o email do usuario via POST
+        $emailUsuario = $this->input->post('emailUsuario');
+
+        // Buscando o usuário na base de dados
+        $this->db->where('emailUsuario', $emailUsuario);
+        $query = $this->db->get('usuarios');
+
+        // Definindo os parametros para mensagens de sucesso e erro
+        if($query->num_rows() === 1) {
+            // Retornando os dados do usuario
+            return $query->row_array();
+        } else {
+            // Retornando o erro na busca pelo email
+            return FALSE;
+        }
+    }
+
+    /**
+     * Fuuction excluirUsuario()
+     *
+     * Método responsável por excluir um usuário a partir do seu ID, excluindo resgistros criados pelo mesmo
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $idUsuario
+     */
+    public function excluirUsuario($idUsuario)
+    {
+        // Definindo as tabelas que deve ser modificadas a partir do idUsuario
+        $tabelas = array(
+            'programas',
+            'municipios',
+        );
+
+        // Definindo o campo que serve de paramatro para a busca da FK e excluindo
+        $this->db->delete($tabelas, array('responsavelCadastro' => $idUsuario));
+
+        // Definindo o campo que serve de parametro para a idUsuario e excluindo
+        $this->db->delete('usuarios', array('idUsuario' => $idUsuario));
     }
 }

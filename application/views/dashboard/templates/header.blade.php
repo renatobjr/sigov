@@ -19,6 +19,7 @@
     {{-- JS --}}
     <script src="{{ base_url('resources/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ base_url('resources/js/bootstrap.min.js') }}"></script>
+
     {{-- Verificação de acesso --}}
     @if(!isset($_SESSION['isLogged']))
         {{ $_SESSION['erroAutorizacao'] = 'Você precisa inserir suas credenciais para ter acesso ao SIGov.' }}
@@ -52,7 +53,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-search fa-fw"></i> Pesquisa</a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
+                                <li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><i class="fa fa-microchip fa-fw"></i> Software</a></li>
                             </ul>
@@ -62,7 +63,7 @@
                 {{-- Menu para Cadastro de municipios: disponivel somente para o PLI[3] --}}
                 @if($_SESSION['perfil'] == 2 && $_SESSION['equipe'] == 2)
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Municípios</a></li>
+                        <li><a href="{{ base_url('dashboard/municipios') }}">Municípios</a></li>
                     </ul>
                 @endif
                 {{-- Menu para Cadastro de software: disponivel somente para o PS[4] --}}

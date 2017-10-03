@@ -29,24 +29,23 @@
             {{-- Logo --}}
             <div class="panel-heading">
                 <img class="center-block" src="{{ base_url('resources/assets/sigov.svg') }}" alt="sigov" width="30%">
-                <h5 class="lead text-center">Cadastre a sua senha para acesso ao SIGov</h5>
+                <h5 class="lead text-center">Redefinir senha</h5>
             </div>
             <ul class="list-group">
                 {{-- Inicio do formulário de login --}}
-                {!! form_open('criar-senha') !!}
-                <input type="hidden" name="token" value="{{ $token }}">
+                {!! form_open('atualizar-senha') !!}
                 <li class="list-group-item">
                     <div class="form-group">
-                        <label for="password" class="control-label">Senha</label>
-                        <input type="password" name="password" value="{{ set_value('password') }}" class="form-control" placeholder="Digite sua senha">
+                        <label for="emailUsuario" class="control-label">Email</label>
+                        <input type="email" name="emailUsuario" value="{{ set_value('emailUsuario') }}" class="form-control" placeholder="Digite seu email">
                     </div>
                     <div class="form-group">
-                        <label for="confirmarPassword" class="control-label">Confirme a senha</label>
-                        <input type="password" name="confirmarPassword" class="form-control" placeholder="Redigite sua senha">
+                        <label for="confirmarEmail" class="control-label">Confirme a senha</label>
+                        <input type="email" name="confirmarEmail" class="form-control" placeholder="Confirme seu email">
                     </div>
                 </li>
                 <li class="list-group-item">
-                    <button type="submit" class="center-block btn btn-primary btn-sx">Confirmar</button>
+                    <button type="submit" class="center-block btn btn-primary btn-sx">Solicitar</button>
                 </li>
                 {!! form_close() !!}
             </ul>
@@ -56,24 +55,17 @@
     <div class="col-lg-3">
         {{-- Mensagem de erro para o formulário padrão --}}
         {!! validation_errors(
-            '<div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Ops! </strong>Verifique se está tudo certo e tente novamente.<br> ',
+        '<div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Ops! </strong>Verifique se está tudo certo e tente novamente.<br> ',
             '</div>'
         ) !!}
         {{-- Mensagem de erro para erro durante autenticação --}}
-        @if(isset($_SESSION['loginErro']))
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Ops! </strong><br><p>{{ $_SESSION['loginErro'] }}</p>
-            </div>
-        @endif
-        @if(isset($_SESSION['erroAutorizacao']))
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Ops! </strong><br><p>{{ $_SESSION['erroAutorizacao'] }}</p>
-            </div>
-            {!! session_unset($_SESSION['erroAutorizacao']) !!}
+        @if(isset($_SESSION['emailNaoEncontrado']))
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Ops! </strong><br><p>{{ $_SESSION['emailNaoEncontrado'] }}</p>
+        </div>
         @endif
     </div>
 </main>

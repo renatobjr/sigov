@@ -51,8 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'home';
 $route['registro'] = 'home/registro';
+$route['redefinir-senha'] = 'home/redefinirSenha';
 $route['dashboard'] = 'home/dashboard';
 $route['dashboard/equipe'] = 'home/equipe';
+$route['dashboard/municipios'] = 'home/municipio';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 // Rotas para o controller Usuario
@@ -60,3 +62,7 @@ $route['login'] = 'usuario/login';
 $route['logout'] = 'usuario/logout';
 $route['criar-usuario'] = 'usuario/criarUsuario';
 $route['criar-senha'] = 'usuario/criarSenha';
+$route['editar-usuario/(:any)'] = 'usuario/editarUsuario/$1';
+$route['atualizar-usuario'] = 'usuario/atualizarUsuario';
+$route['atualizar-senha'] = 'usuario/buscarEmail';
+$route['excluir-usuario/(:any)'] = 'usuario/excluirUsuario/$1';

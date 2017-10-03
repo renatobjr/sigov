@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label for="password" class="control-label">Senha</label>
                                 <input type="password" name="password" class="form-control" placeholder="Informe sua senha">
-                                <p class="text-center"><a href="#">Esqueci minha senha!</a></p>
+                                <p class="text-center"><a href="{{ base_url('redefinir-senha') }}">Esqueci minha senha!</a></p>
                             </div>
                         </li>
                         <li class="list-group-item">
@@ -80,6 +80,13 @@
                     <strong>Ops! </strong><br><p>{{ $_SESSION['erroAutorizacao'] }}</p>
                 </div>
                 {!! session_unset($_SESSION['erroAutorizacao']) !!}
+            @endif
+            @if(isset($_SESSION['sucessoRedefinirSenha']))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Ops! </strong><br><p>{{ $_SESSION['sucessoRedefinirSenha'] }}</p>
+                </div>
+                {!! session_unset($_SESSION['sucessoRedefinirSenha']) !!}
             @endif
         </div>
     </main>
