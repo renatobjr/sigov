@@ -216,7 +216,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sigov`;
-INSERT INTO `sigov`.`usuarios` (`equipe`,`perfil`,`nomeUsuario`,`emailUsuario`,`password`,`token`) VALUES (1,1,'Administrador','renato.bonfim.jr@cciao.org',md5('monitor'),'da39a3ee5e6b4b0d3255bfef95601890afd80709');
+INSERT INTO `sigov`.`usuarios` (`equipe`,`perfil`,`nomeUsuario`,`emailUsuario`,`password`,`token`) VALUES (1,1,'Administrador','admin.sigov@sigov.com',md5('admin.sigov'),'da39a3ee5e6b4b0d3255bfef95601890afd80709');
 
 COMMIT;
 
