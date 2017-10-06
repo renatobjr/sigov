@@ -7,6 +7,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Home extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        // Load para os modelos do usuário e do municipio
+        $this->load->model('usuario_model');
+        $this->load->model('municipio_model');
+
+        // Criando um array com o conteudo de todos os gestores
+        $this->data['gestores'] = $this->usuario_model->getAllGestores();
+
+        // Criando um array com o conteudo de todos os Pesquisadores do PLi
+        $this->data['pli'] = $this->usuario_model->getAllPli();
+
+        // Criando um array com o conteudo de todos os Pesquisadores do PS
+        $this->data['ps'] = $this->usuario_model->getAllPs();
+
+        // Criando um array com o conteudo de todos os municipios
+        $this->data['municipios'] = $this->municipio_model->getAllMunicipios();
+    }
     /**
      * Variável global para informações compartilhadas entre as views
      *
@@ -15,7 +34,7 @@ class Home extends CI_Controller
      * @var array
      */
     private $data = array(
-        'title' => 'SIGov 1.0'
+        'title' => 'SIGov 1.0',
     );
     /**
      * Function index()
@@ -53,18 +72,6 @@ class Home extends CI_Controller
      */
     public function equipe()
     {
-        // Realizando o load do Usuario_model
-        $this->load->model('usuario_model');
-
-        // Criando um array com o conteudo de todos os gestores
-        $this->data['gestores'] = $this->usuario_model->getAllGestores();
-
-        // Criando um array com o conteudo de todos os Pesquisadores do PLi
-        $this->data['pli'] = $this->usuario_model->getAllPli();
-
-        // Criando um array com o conteudo de todos os Pesquisadores do PS
-        $this->data['ps'] = $this->usuario_model->getAllPs();
-
         // Encaminhamento para a equipe view
         $this->blade->view('dashboard.usuarios', $this->data);
     }

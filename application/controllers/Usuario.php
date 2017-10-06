@@ -8,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Usuario extends CI_Controller
 {
-
     /**
      * Function __construct().
      *
@@ -17,7 +16,17 @@ class Usuario extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        // Load para o modelo do usuário
         $this->load->model('usuario_model');
+
+        // Criando um array com o conteudo de todos os gestores
+        $this->data['gestores'] = $this->usuario_model->getAllGestores();
+
+        // Criando um array com o conteudo de todos os Pesquisadores do PLi
+        $this->data['pli'] = $this->usuario_model->getAllPli();
+
+        // Criando um array com o conteudo de todos os Pesquisadores do PS
+        $this->data['ps'] = $this->usuario_model->getAllPs();
     }
     /**
      * Variável global para informações compartilhadas entre as views
@@ -111,16 +120,7 @@ class Usuario extends CI_Controller
 
         // Realizando as verificações do formulário
         if($this->form_validation->run() === FALSE){
-            // Criando um array com o conteudo de todos os gestores
-            $this->data['gestores'] = $this->usuario_model->getAllGestores();
-
-            // Criando um array com o conteudo de todos os Pesquisadores do PLi
-            $this->data['pli'] = $this->usuario_model->getAllPli();
-
-            // Criando um array com o conteudo de todos os Pesquisadores do PS
-            $this->data['ps'] = $this->usuario_model->getAllPs();
-
-            // Retornando o usuário a página de Login e apresentando os erros
+            // Retornando o usuário a página de cadastro de usuarios e apresentando os erros
             $this->blade->view('dashboard.usuarios',$this->data);
         } else {
             // Inserindo o novo usuário no DB a partir do método criarUsuario
@@ -262,7 +262,7 @@ class Usuario extends CI_Controller
         $this->session->set_flashdata('sucessoDelUsuario','Usuário excluído com sucesso.');
 
         // Redirecionando o usuário para a dashboard
-        redirect('dashboard');
+        redirect('dashboard/equipe');
 
     }
     /**

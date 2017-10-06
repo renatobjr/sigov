@@ -11,6 +11,7 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ base_url('resources/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ base_url('resources/css/font-awesome.css') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url('resources/assets/sigov.png') }}">
     <style>
         main{
             padding-top: 6em;
@@ -50,14 +51,7 @@
                         <li><a href="{{ base_url('dashboard/equipe') }}"><i class="fa fa-users fa-fw"></i> Equipe</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-search fa-fw"></i> Pesquisa</a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><i class="fa fa-microchip fa-fw"></i> Software</a></li>
-                            </ul>
-                        </li>
+                        <li><li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li></li>
                     </ul>
                 @endif
                 {{-- Menu para Cadastro de municipios: disponivel somente para o PLI[3] --}}

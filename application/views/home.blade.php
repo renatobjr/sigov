@@ -11,6 +11,7 @@
     <title>{{ $title }}</title>
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ base_url('resources/css/bootstrap.css') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url('resources/assets/sigov.png') }}">
     <style>
         body{
             padding-top: 8em;

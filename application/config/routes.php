@@ -66,3 +66,5 @@ $route['editar-usuario/(:any)'] = 'usuario/editarUsuario/$1';
 $route['atualizar-usuario'] = 'usuario/atualizarUsuario';
 $route['atualizar-senha'] = 'usuario/buscarEmail';
 $route['excluir-usuario/(:any)'] = 'usuario/excluirUsuario/$1';
+// Rotas para o controller Municipio
+$route['criar-municipio'] = 'municipio/criarMunicipio';

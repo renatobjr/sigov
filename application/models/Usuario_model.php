@@ -45,7 +45,11 @@ class Usuario_model extends CI_Model
     public function getAllGestores()
     {
         // Recuperando todos os registro relativos a gestores no DB
-        $query = $this->db->get_where('usuarios', array('perfil' => 2));
+        $this->db->select('idUsuario, nomeUsuario, emailUsuario, descricaoEquipe');
+        $this->db->from('usuarios');
+        $this->db->join('equipes', 'equipe = idEquipe');
+        $this->db->where(array('perfil' => 2));
+        $query = $this->db->get();
 
         // Retornando o array com os dados de todos os registros
         return $query->result_array();
@@ -114,7 +118,7 @@ class Usuario_model extends CI_Model
     public function verificarToken($token)
     {
         // Verificando a validade do $token
-        $query = $this->db->get_where('usuarios', array('token' => $token));
+        $query = $this->db->get_where('usuarios', array('token' => $this->token));
 
         // Retornando o resultado da consulta ao controller Home
         if($query->num_rows() === 1) {
@@ -198,11 +202,11 @@ class Usuario_model extends CI_Model
     public function criarSenha()
     {
         // Utilizando o token do usuário para a busca no DB
-        $token = $this->input->post('token');
+        $this->token = $this->input->post('token');
 
         // Buscando o usuario a partir do token
         $this->db->select('idUsuario');
-        $this->db->where('token', $token);
+        $this->db->where('token', $this->token);
         $query = $this->db->get('usuarios');
 
         // Obtendo o idUsuario da tabela e convertendo em string
@@ -258,10 +262,10 @@ class Usuario_model extends CI_Model
     public function buscarEmail()
     {
         // Recebendo o email do usuario via POST
-        $emailUsuario = $this->input->post('emailUsuario');
+        $this->emailUsuario = $this->input->post('emailUsuario');
 
         // Buscando o usuário na base de dados
-        $this->db->where('emailUsuario', $emailUsuario);
+        $this->db->where('emailUsuario', $this->emailUsuario);
         $query = $this->db->get('usuarios');
 
         // Definindo os parametros para mensagens de sucesso e erro
