@@ -32,7 +32,7 @@
                 </div>
                 <ul class="list-group">
                     {{-- Formulário para a criação de novos usuários --}}
-                    {!! form_open('criar-usuario') !!}
+                    {!! form_open('criar-usuario','#criarUsuario') !!}
                         <li class="list-group-item">
                             <div class="form-group">
                                 <div class="input-group">
@@ -82,7 +82,7 @@
                             </div>
                         </li>
                         <li class="list-group-item">
-                            <button type="submit" class="btn btn-primary btn-sm center-block">Cadastrar</button>
+                            <button type="submit" id="salvarUsuario" class="btn btn-primary btn-sm center-block">Cadastrar</button>
                         </li>
                     {!! form_close() !!}
                 </ul>
@@ -304,7 +304,7 @@
                 $(this).attr('id="disabledInput" disabled', true);
             });
 
-            $(":button[type=submit]").click(function(){
+            $("#salvarUsuario").click(function(){
                 $(this).html("<i class=\"fa fa-refresh fa-spin fa-fw\"></i>\n" +
                     "                            <span class=\"sr-only\">Loading...</span> Aguarde");
                 $(this).attr('id="disabledInput" disabled', true);
