@@ -13,6 +13,7 @@ class Home extends CI_Controller
         // Load para os modelos do usuário e do municipio
         $this->load->model('usuario_model');
         $this->load->model('municipio_model');
+        $this->load->model('software_model');
 
         // Criando um array com o conteudo de todos os gestores
         $this->data['gestores'] = $this->usuario_model->getAllGestores();
@@ -25,6 +26,12 @@ class Home extends CI_Controller
 
         // Criando um array com o conteudo de todos os municipios
         $this->data['municipios'] = $this->municipio_model->getAllMunicipios();
+
+        // Criando um array com todos os softwares
+        $this->data['softwares'] = $this->software_model->getAllSoftwares();
+
+        // Criando um array com a contagem dos softwares
+        $this->data['totalSoftware'] = $this->software_model->countSoftwaresByArea();
     }
     /**
      * Variável global para informações compartilhadas entre as views
@@ -72,14 +79,47 @@ class Home extends CI_Controller
      */
     public function equipe()
     {
-        // Encaminhamento para a equipe view
-        $this->blade->view('dashboard.usuarios', $this->data);
+        // Definindo acesso a partir do perfil e equipe
+        if($_SESSION['perfil'] == 3){
+            // Definindo mensagem de erro de acesso
+            $this->session->set_flashdata('erroAcesso','Você não tem provilégios para acesso a esta página.');
+
+            // Redirecionando para o index
+            redirect('dashboard');
+        } else {
+            // Encaminhamento para a equipe view
+            $this->blade->view('dashboard.usuarios', $this->data);
+        }
     }
 
     public function municipio()
     {
-        // Encaminhamento para a municipio view
-        $this->blade->view('dashboard.municipios', $this->data);
+        // Definindo acesso a partir do perfil e equipe
+        if($_SESSION['equipe'] == 2 || $_SESSION['perfil'] == 1){
+            // Encaminhamento para a municipio view
+            $this->blade->view('dashboard.municipios', $this->data);
+        } else {
+            // Definindo mensagem de erro de acesso
+            $this->session->set_flashdata('erroAcesso','Você não tem provilégios para acesso a esta página.');
+
+            // Redirecionando para o index
+            redirect('dashboard');
+        }
+    }
+
+    public function software()
+    {
+        // Definindo acesso a partir do perfil e equipe
+        if($_SESSION['equipe'] == 3 || $_SESSION['perfil'] == 1){
+            // Encaminhamento para a software view
+            $this->blade->view('dashboard.softwares', $this->data);
+        } else {
+            // Definindo mensagem de erro de acesso
+            $this->session->set_flashdata('erroAcesso','Você não tem provilégios para acesso a esta página.');
+
+            // Redirecionando para o index
+            redirect('dashboard');
+        }
     }
     /**
      * Function registro()

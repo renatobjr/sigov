@@ -8,18 +8,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Municipio extends CI_Controller
 {
-    // TODO: Inserir PHPDOC ** Urgente: construtor
+    /**
+     * Municipio constructor.
+     *
+     * Carrega o modelo inicial da classe durante a sua construção
+     */
     public function __construct()
     {
         parent::__construct();
         // Load para o model do municipio
         $this->load->model('municipio_model');
     }
-    // TODO: Inserir PHPDOC ** Urgente: data(array)
+    /**
+     * Variável global para informações compartilhadas entre as vies
+     *
+     * @since 1.0
+     * @author RenatoBonfim Jr.
+     * @var array
+     */
     private $data = array(
         'title' => 'SIGov 1.0'
     );
-    // TODO: Inserir PHPDOC ** Urgente: criarMunicipio
+    /**
+     * Fuction criarMunicipio()
+     *
+     * Método responsável por adicionar um novo municipio ao DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return void
+     */
     public function criarMunicipio()
     {
         // Definindo as validações para o formulário de criação de novos municipios
@@ -41,5 +59,78 @@ class Municipio extends CI_Controller
             // Redirecionando para a página de municipios
             redirect('dashboard/municipios');
         }
+    }
+    /**
+     * Function visualizarMunicipio()
+     *
+     * Método responsável pela visualização das informações do municipio a partir do seu ID
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $idMunicipio
+     * @return JSON $data
+     */
+    public function visualizarMunicipio($idMunicipio)
+    {
+        // Recebendo a requisição via GET
+        $data = $this->municipio_model->getMunicipioById($idMunicipio);
+
+        // Retornando o JSON
+        echo json_encode($data);
+    }
+    /**
+     * Fuction editarMunicipio()
+     *
+     * Método responsável por editar as informações de um município a partir do seu ID
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr
+     * @param $idMunicipio
+     * @return JSON $data
+     */
+    public function editarMunicipio($idMunicipio)
+    {
+        // Recebendo a requisição via GET
+        $data = $this->municipio_model->getIdMunicipio($idMunicipio);
+
+        // Retornando o JSON
+        echo json_encode($data);
+    }
+    /**
+     * Fuction atualizarMunicipio()
+     *
+     * Método responsável por atualizar no DB os dados de um municipio
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return JSON
+     */
+    public function atualizarMunicipio()
+    {
+        // Recebendo o ID do municipio que sofrerá a atualização
+        $this->municipio_model->atualizarMunicipio(array('idMunicipio' => $this->input->post('idMunicipio')));
+
+        // Retornando o JSON
+        echo json_encode(array('status' => TRUE));
+    }
+    /**
+     * Function excluirMonicipio()
+     *
+     * Método responsavel pela exclusão de um municipio a partir do seu ID
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @param $idMunicipio
+     */
+    public function excluirMunicipio($idMunicipio)
+    {
+        // Chamada para o método excluirMunicipio a partir do $idMunicipio
+        $this->municipio_model->excluirMunicipio($idMunicipio);
+
+        // Retornando ao usuário a informação de exclusão do municipio
+        $this->session->set_flashdata('sucessoDelMunicipio','Município excluído com sucesso.');
+
+        // Redirecionando o usuário para a dashboard
+        redirect('dashboard/municipios');
     }
 }

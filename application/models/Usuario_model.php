@@ -82,7 +82,7 @@ class Usuario_model extends CI_Model
      */
     public function getAllPs()
     {
-        // Recuperad todos os registros relativos a Pesquisadores do PS no DB
+        // Recuperado todos os registros relativos a Pesquisadores do PS no DB
         $query = $this->db->get_where('usuarios', array('perfil' => 3, 'equipe' => 3));
 
         // Retornando o array com os dados de todos os registrios
@@ -99,10 +99,12 @@ class Usuario_model extends CI_Model
      * @param $idUsuario
      * @return mixed
      */
-    public function getIdUsuario($idUsuario)
+    public function getUsuarioById($idUsuario)
     {
+        // Recuperando o registro do usuario no DB a partir de ID
         $query = $this->db->get_where('usuarios', array('idUsuario' => $idUsuario));
 
+        // Retonando a linha relativa ao usuario
         return $query->row();
     }
     /**
@@ -118,7 +120,7 @@ class Usuario_model extends CI_Model
     public function verificarToken($token)
     {
         // Verificando a validade do $token
-        $query = $this->db->get_where('usuarios', array('token' => $this->token));
+        $query = $this->db->get_where('usuarios', array('token' => $token));
 
         // Retornando o resultado da consulta ao controller Home
         if($query->num_rows() === 1) {
@@ -238,9 +240,9 @@ class Usuario_model extends CI_Model
     {
         // Recebendo os dados obtidos a partir do formulário de atualização do usuário
         $dataUsuario = array(
-            'nomeUsuario'   => $_POST['nomeUsuario'],
-            'equipe'        => $_POST['equipe'],
-            'perfil'        => $_POST['perfil']
+            'nomeUsuario'   => $_POST['editarNomeUsuario'],
+            'equipe'        => $_POST['editarEquipe'],
+            'perfil'        => $_POST['editarPerfil']
         );
 
         // Atualizando o registro do usuário

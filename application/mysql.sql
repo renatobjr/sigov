@@ -8,22 +8,22 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema sigov
+-- Schema pobrasil_sigov
 -- -----------------------------------------------------
 -- Schema inicial
 
 -- -----------------------------------------------------
--- Schema sigov
+-- Schema pobrasil_sigov
 --
 -- Schema inicial
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `sigov` DEFAULT CHARACTER SET utf8 ;
-USE `sigov` ;
+CREATE SCHEMA IF NOT EXISTS `pobrasil_sigov` DEFAULT CHARACTER SET utf8 ;
+USE `pobrasil_sigov` ;
 
 -- -----------------------------------------------------
--- Table `sigov`.`perfis`
+-- Table `pobrasil_sigov`.`perfis`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`perfis` (
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`perfis` (
   `idPerfil` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada perfil cadastrado na aplicação.',
   `descricaoPerfil` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição de cada perfil de usuário.',
   PRIMARY KEY (`idPerfil`))
@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `sigov`.`perfis` (
 
 
 -- -----------------------------------------------------
--- Table `sigov`.`equipes`
+-- Table `pobrasil_sigov`.`equipes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`equipes` (
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`equipes` (
   `idEquipe` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de das equipes cadastradas.',
   `descricaoEquipe` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição de cada equipe.',
   PRIMARY KEY (`idEquipe`))
@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `sigov`.`equipes` (
 
 
 -- -----------------------------------------------------
--- Table `sigov`.`usuarios`
+-- Table `pobrasil_sigov`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`usuarios` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT auto incrementada com o ID de cada Usuário cadastrado na aplicação.',
   `equipe` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para definir a equipe do usuário e conceder acesso a funcionalidades.',
   `perfil` INT NOT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para definir o perfil do usuário e conceder acesso a funcionalidades.',
@@ -63,21 +63,21 @@ CREATE TABLE IF NOT EXISTS `sigov`.`usuarios` (
   INDEX `fk_usuarios_perfis_idx` (`perfil` ASC),
   CONSTRAINT `fk_usuarios_perfis`
   FOREIGN KEY (`perfil`)
-  REFERENCES `sigov`.`perfis` (`idPerfil`),
+  REFERENCES `pobrasil_sigov`.`perfis` (`idPerfil`),
   CONSTRAINT `fk_usuarios_equipes`
   FOREIGN KEY (`equipe`)
-  REFERENCES `sigov`.`equipes` (`idEquipe`)
+  REFERENCES `pobrasil_sigov`.`equipes` (`idEquipe`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8
-  COMMENT = 'Tabela responsável por armazenar informações sobre os usuários com acesso ao Sistema SIGov.';
+  COMMENT = 'Tabela responsável por armazenar informações sobre os usuários com acesso ao Sistema pobrasil_sigov.';
 
 
 -- -----------------------------------------------------
--- Table `sigov`.`municipios`
+-- Table `pobrasil_sigov`.`municipios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`municipios` (
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`municipios` (
   `idMunicipio` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada Município cadastrado na aplicação.',
   `nomeMunicipio` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) contendo o nome do município cadastrado.',
   `densidadeDemografica` INT NOT NULL COMMENT 'Campo do tipo INT com a densidade demográfica do município.',
@@ -98,12 +98,12 @@ CREATE TABLE IF NOT EXISTS `sigov`.`municipios` (
   INDEX `fk_responsavelEdicao_usuarios_idx` (`responsavelEdicao` ASC),
   CONSTRAINT `fk_responsavelCadastro_usuarios`
   FOREIGN KEY (`responsavelCadastro`)
-  REFERENCES `sigov`.`usuarios` (`idUsuario`)
+  REFERENCES `pobrasil_sigov`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_responsavelEdicao_usuarios`
   FOREIGN KEY (`responsavelEdicao`)
-  REFERENCES `sigov`.`usuarios` (`idUsuario`)
+  REFERENCES `pobrasil_sigov`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB
@@ -112,22 +112,22 @@ CREATE TABLE IF NOT EXISTS `sigov`.`municipios` (
 
 
 -- -----------------------------------------------------
--- Table `sigov`.`areaSoftwares`
+-- Table `pobrasil_sigov`.`areaSoftwares`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`areaSoftwares` (
-  `idAreaSoftwares` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada área de software cadastrada na aplicação.',
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`areaSoftwares` (
+  `idAreaSoftware` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada área de software cadastrada na aplicação.',
   `descricaoArea` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo a descrição da área de atuação do software.',
-  PRIMARY KEY (`idAreaSoftwares`))
+  PRIMARY KEY (`idAreaSoftware`))
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8
   COMMENT = 'Tabela responsável por armazenar as categorias de software.';
 
 
 -- -----------------------------------------------------
--- Table `sigov`.`programas`
+-- Table `pobrasil_sigov`.`programas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sigov`.`programas` (
-  `idProgramas` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada programa cadastrado na aplicação.',
+CREATE TABLE IF NOT EXISTS `pobrasil_sigov`.`programas` (
+  `idPrograma` INT NOT NULL AUTO_INCREMENT COMMENT 'Chave primária do tipo INT com auto incremento responsável pelo ID de cada programa cadastrado na aplicação.',
   `nomeSoftware` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(255) contendo o nome do Software.',
   `descricaoSoftware` TEXT CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo TEXT contendo a descrição do programa.',
   `requerimentoMemoria` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL COMMENT 'Campo do tipo VARCHAR(45) contendo o requerimento mínimo de Memória RAM para utilização do software.',
@@ -145,23 +145,23 @@ CREATE TABLE IF NOT EXISTS `sigov`.`programas` (
   `criadoEm` TIMESTAMP NOT NULL COMMENT 'Campo do tipo Timestamp() informando a data/hora da criação do dado no DB.',
   `responsavelEdicao` INT NULL COMMENT 'Chave Estrangeira (FK) do tipo INT utilizado para informar o responsável pela edição do software.',
   `editadoEm` TIMESTAMP NULL COMMENT 'Campo do tipo Timestamp() informando a data/hora da edição do dado no DB.',
-  PRIMARY KEY (`idProgramas`),
+  PRIMARY KEY (`idPrograma`),
   INDEX `fk_responsavelCadastro_usuarios_fk_idx` (`responsavelCadastro` ASC),
   INDEX `fk_responsavelEdicao_usuarios_fk_idx` (`responsavelEdicao` ASC),
   INDEX `fk_programas_areaSoftware_fk_idx` (`areaSoftware` ASC),
   CONSTRAINT `fk_responsavelCadastro_usuarios_fk`
   FOREIGN KEY (`responsavelCadastro`)
-  REFERENCES `sigov`.`usuarios` (`idUsuario`)
+  REFERENCES `pobrasil_sigov`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_responsavelEdicao_usuarios_fk`
   FOREIGN KEY (`responsavelEdicao`)
-  REFERENCES `sigov`.`usuarios` (`idUsuario`)
+  REFERENCES `pobrasil_sigov`.`usuarios` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_programas_areaSoftware_fk`
   FOREIGN KEY (`areaSoftware`)
-  REFERENCES `sigov`.`areaSoftwares` (`idAreaSoftwares`)
+  REFERENCES `pobrasil_sigov`.`areaSoftwares` (`idAreaSoftware`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB
@@ -174,49 +174,48 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `sigov`.`perfis`
+-- Data for table `pobrasil_sigov`.`perfis`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `sigov`;
-INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Admin');
-INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Gestor');
-INSERT INTO `sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador');
+USE `pobrasil_sigov`;
+INSERT INTO `pobrasil_sigov`.`perfis` (`descricaoPerfil`) VALUES ('Admin');
+INSERT INTO `pobrasil_sigov`.`perfis` (`descricaoPerfil`) VALUES ('Gestor');
+INSERT INTO `pobrasil_sigov`.`perfis` (`descricaoPerfil`) VALUES ('Pesquisador');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `sigov`.`equipes`
+-- Data for table `pobrasil_sigov`.`equipes`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `sigov`;
-INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Administrador do Sistema');
-INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Levantamento de Informações - PLi');
-INSERT INTO `sigov`.`equipes` (`descricaoEquipe`) VALUES ('Pesquisa de Software - PS');
+USE `pobrasil_sigov`;
+INSERT INTO `pobrasil_sigov`.`equipes` (`descricaoEquipe`) VALUES ('Administrador do Sistema');
+INSERT INTO `pobrasil_sigov`.`equipes` (`descricaoEquipe`) VALUES ('Levantamento de Informações - PLi');
+INSERT INTO `pobrasil_sigov`.`equipes` (`descricaoEquipe`) VALUES ('Pesquisa de Software - PS');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `sigov`.`areaSoftwares`
+-- Data for table `pobrasil_sigov`.`areaSoftwares`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `sigov`;
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Saúde');
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Educação');
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Patrimônio');
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Execução');
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Folha de pagamento');
-INSERT INTO `sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Cadastro de funcionários');
+USE `pobrasil_sigov`;
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Saúde');
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Educação');
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Patrimônio');
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Execução');
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Folha de pagamento');
+INSERT INTO `pobrasil_sigov`.`areaSoftwares` (`descricaoArea`) VALUES ('Cadastro de funcionários');
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `sigov`.`usuarios`
+-- Data for table `pobrasil_sigov`.`usuarios`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `sigov`;
-INSERT INTO `sigov`.`usuarios` (`equipe`,`perfil`,`nomeUsuario`,`emailUsuario`,`password`,`token`) VALUES (1,1,'Administrador','admin.sigov@sigov.com',md5('admin.sigov'),'da39a3ee5e6b4b0d3255bfef95601890afd80709');
+USE `pobrasil_sigov`;
+INSERT INTO `pobrasil_sigov`.`usuarios` (`equipe`,`perfil`,`nomeUsuario`,`emailUsuario`,`password`,`token`) VALUES (1,1,'Administrador','admin@sigov.info',md5('admin.sigov.pobrasil'),'da39a3ee5e6b4b0d3255bfef95601890afd80709');
 
 COMMIT;
-

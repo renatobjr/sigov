@@ -28,45 +28,62 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="lead">Novo participante</span>
-                    <p class="lead pull-right"><i class="fa fa-user-plus fa-fw"></i></p>
+                    <p class="lead pull-right"><i class="fa fa-id-card-o fa-fw"></i></p>
                 </div>
                 <ul class="list-group">
                     {{-- Formulário para a criação de novos usuários --}}
                     {!! form_open('criar-usuario') !!}
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <label for="nomeUsuario" class="control-label">Nome</label>
-                            <input type="text" name="nomeUsuario" value="{{ set_value('nomeUsuario') }}" class="form-control" placeholder="Informe o nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailUsuario" class="control-label">Endereço de email</label>
-                            <input type="email" name="emailUsuario" value="{{ set_value('nome_pessoa') }}" class="form-control" placeholder="Informe um email válido">
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="perfil" class="control-label">Selecione o Perfil</label>
-                                    <select name="perfil" class="form-control">
-                                        <option value="2">Gestor</option>
-                                        <option value="3">Pesquisador</option>
-                                    </select>
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label for="nomeUsuario" class="control-label">Nome</label>
+                                    <span class="input-group-addon"><i class="fa fa-user-circle-o pull-right"></i></span>
+                                </div>
+                                <input type="text" name="nomeUsuario" value="{{ set_value('nomeUsuario') }}" class="form-control" placeholder="Informe o nome completo">
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label for="emailUsuario" class="control-label">Endereço de email</label>
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o pull-right"></i></span>
+                                </div>
+                                <input type="email" name="emailUsuario" value="{{ set_value('nome_pessoa') }}" class="form-control" placeholder="Informe um email válido">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label for="perfil" class="control-label">Selecione o Perfil</label>
+                                            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                        </div>
+                                        <select name="perfil" class="form-control">
+                                            @if($_SESSION['perfil'] == 1)
+                                                <option value="2">Gestor</option>
+                                            @endif
+                                            <option value="3">Pesquisador</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label for="equipe" class="control-label">Selecione a Equipe</label>
+                                            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                        </div>
+                                        <select name="equipe" class="form-control">
+                                            @if($_SESSION['perfil'] == 1 || $_SESSION['equipe'] == 2)
+                                                <option value="2">PLi - Municípios</option>
+                                            @endif
+                                            @if($_SESSION['perfil'] == 1 || $_SESSION['equipe'] == 3)
+                                                <option value="3">PS - Software</option>
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="equipe" class="control-label">Selecione a Equipe</label>
-                                    <select name="equipe" class="form-control">
-                                        <option value="2">PLi - Municípios</option>
-                                        <option valu
-                                                ="3">PS - Software</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <button type="submit" class="btn btn-primary btn-sm center-block">Cadastrar</button>
-                    </li>
+                        </li>
+                        <li class="list-group-item">
+                            <button type="submit" class="btn btn-primary btn-sm center-block">Cadastrar</button>
+                        </li>
                     {!! form_close() !!}
                 </ul>
             </div>
@@ -102,8 +119,13 @@
                                         <td>{{ $gestor['nomeUsuario'] }}</td>
                                         <td>{{ $gestor['emailUsuario'] }}</td>
                                         <td>{{ $gestor['descricaoEquipe'] }}</td>
-                                        <td><button class="btn btn-danger btn-sm center-block" data-toggle="modal" data-target=".excluirGestor"><i class="fa fa-trash-o fa-fw"></i></button></td>
-                                        <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $gestor['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                        @if($_SESSION['perfil'] == 1)
+                                            <td><button class="btn btn-danger btn-sm center-block excluirUsuario" data-toggle="modal" data-target=".modalUsuario" data-id="{{ $gestor['idUsuario'] }}"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                            <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $gestor['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                        @else
+                                            <td><button class="btn btn-danger btn-sm center-block excluirUsuario" disabled="disabled"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                            <td><button class="btn btn-success btn-sm center-block" disabled="disabled"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </table>
@@ -141,8 +163,13 @@
                                             <tr>
                                                 <td>{{ $pesquisador['nomeUsuario'] }}</td>
                                                 <td>{{ $pesquisador['emailUsuario'] }}</td>
-                                                <td><button class="btn btn-danger btn-sm center-block" data-toggle="modal" data-target=".excluirPli"><i class="fa fa-trash-o fa-fw"></i></button></td>
-                                                <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $pesquisador['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @if($_SESSION['perfil'] == 1 || $_SESSION['equipe'] == 2)
+                                                    <td><button class="btn btn-danger btn-sm center-block excluirUsuario" data-toggle="modal" data-target=".modalUsuario" data-id="{{ $pesquisador['idUsuario'] }}"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                                    <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $pesquisador['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @else
+                                                    <td><button class="btn btn-danger btn-sm center-block excluirUsuario" disabled="disabled"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                                    <td><button class="btn btn-success btn-sm center-block" disabled="disabled"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </table>
@@ -180,8 +207,13 @@
                                             <tr>
                                                 <td>{{ $pesquisador['nomeUsuario'] }}</td>
                                                 <td>{{ $pesquisador['emailUsuario'] }}</td>
-                                                <td><button class="btn btn-danger btn-sm center-block" data-toggle="modal" data-target=".excluirPs"><i class="fa fa-trash-o fa-fw"></i></button></td>
-                                                <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $pesquisador['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @if($_SESSION['perfil'] == 1 || $_SESSION['equipe'] == 3)
+                                                    <td><button class="btn btn-danger btn-sm center-block excluirUsuario" data-toggle="modal" data-target=".modalUsuario" data-id="{{ $pesquisador['idUsuario'] }}"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                                    <td><button class="btn btn-success btn-sm center-block" onclick="editarUsuario({{ $pesquisador['idUsuario'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @else
+                                                    <td><button class="btn btn-danger btn-sm center-block excluirUsuario" disabled="disabled"><i class="fa fa-trash-o fa-fw"></i></button></td>
+                                                    <td><button class="btn btn-success btn-sm center-block" disabled="disabled"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </table>
@@ -195,8 +227,8 @@
     </div>
 
     {{-- Configuração para as janelas modais --}}
-    {{-- Modal para exclusão dos gestores --}}
-    <div class="modal fade excluirGestor" tabindex="-1" role="dialog" aria-labelledby="modal-label">
+    {{-- Modal para exclusão dos usuarios --}}
+    <div class="modal fade modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modal-label">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -208,29 +240,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                    @if(!empty($gestor))
-                        <a href="{{ base_url('excluir-usuario/'.$gestor['idUsuario']) }}" class="btn btn-danger">Excluir</a>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- Modal para exclusão dos pesquisadores --}}
-    <div class="modal fade excluirPli excluirPs" tabindex="-1" role="dialog" aria-labelledby="modal-label">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Confirmar exclusão?</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Deseja realmente excluir o usuário selecionado?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                    @if(!empty($pesquisador))
-                        <a href="{{ base_url('excluir-usuario/'.$pesquisador['idUsuario']) }}" class="btn btn-danger">Excluir</a>
-                    @endif
+                    <a href="" class="btnExcluir btn btn-danger">Excluir</a>
                 </div>
             </div>
         </div>
@@ -242,7 +252,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Editar usuário</h4>
+                    <h4 class="modalTitulo modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <ul class="list-group">
@@ -251,23 +261,25 @@
                         <input type="hidden" name="idUsuario">
                         <li class="list-group-item">
                             <div class="form-group">
-                                <label for="nomeUsuario" class="control-label">Nome</label>
-                                <input type="text" name="nomeUsuario" class="form-control" placeholder="Informe o nome completo" required>
+                                <label for="editarNomeUsuario" class="control-label">Nome</label>
+                                <input type="text" name="editarNomeUsuario" class="form-control" placeholder="Informe o nome completo" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="perfil" class="control-label">Selecione o Perfil</label>
-                                        <select name="perfil" class="form-control">
-                                            <option value="2">Gestor</option>
+                                        <label for="editarPerfil" class="control-label">Selecione o Perfil</label>
+                                        <select name="editarPerfil" class="form-control">
+                                            @if($_SESSION['perfil'] == 1)
+                                                <option value="2">Gestor</option>
+                                            @endif
                                             <option value="3">Pesquisador</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="equipe" class="control-label">Selecione a Equipe</label>
-                                        <select name="equipe" class="form-control">
+                                        <label for="editarEquipe" class="control-label">Selecione a Equipe</label>
+                                        <select name="editarEquipe" class="form-control">
                                             <option value="2">PLi - Municípios</option>
                                             <option value="3">PS - Software</option>
                                         </select>
@@ -286,16 +298,22 @@
     </div>
 
     <script>
+        // Função para substituição do botão submit e trava do formulário
         $(function () {
             $(":input[type=submit]").click(function(){
-                $(this).attr("disable", true);
+                $(this).attr('id="disabledInput" disabled', true);
             });
 
             $(":button[type=submit]").click(function(){
                 $(this).html("<i class=\"fa fa-refresh fa-spin fa-fw\"></i>\n" +
                     "                            <span class=\"sr-only\">Loading...</span> Aguarde");
-                $(this).attr("disable", true);
+                $(this).attr('id="disabledInput" disabled', true);
             });
+        });
+        // Função modal para excluir um usuário
+        $('.excluirUsuario').click(function () {
+            var idUsuario = $(this).data('id');
+            $('.btnExcluir').attr('href','{{ base_url('excluir-usuario') }}/' + idUsuario);
         });
         // Função para editar via requisação Ajax os dados do Usuário
         function editarUsuario(idUsuario)
@@ -311,10 +329,10 @@
                 success: function(data)
                 {
                     $('[name="idUsuario"]').val(data.idUsuario);
-                    $('[name="nomeUsuario"]').val(data.nomeUsuario);
+                    $('[name="editarNomeUsuario"]').val(data.nomeUsuario);
 
                     $('#formModal').modal('show');
-                    $('.modalTitulo').text('Editar Usuario');
+                    $('.modalTitulo').text(data.nomeUsuario);
                 }
             });
         }
@@ -330,6 +348,7 @@
                 success: function(data)
                 {
                     $('#formModal').modal('hide');
+                    alert(data['JSON']);
                     location.reload();
                 }
             });

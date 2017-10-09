@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuario extends CI_Controller
 {
     /**
-     * Function __construct().
+     * Usuario constructor.
      *
      * Carrega o modelo inicial da classe durante a sua construção
      */
@@ -68,6 +68,8 @@ class Usuario extends CI_Controller
                     'idUsuario'     => $login['idUsuario'],
                     'perfil'        => $login['perfil'],
                     'nomeUsuario'   => $login['nomeUsuario'],
+                    'perfil'        => $login['perfil'],
+                    'equipe'        => $login['equipe'],
                     'isLogged'      => TRUE
                 );
                 // Cria a sessão do usuário e determina sua view
@@ -181,7 +183,7 @@ class Usuario extends CI_Controller
     public function editarUsuario($idUsuario)
     {
         // Recebendo a requisição via GET
-        $data = $this->usuario_model->getIdUsuario($idUsuario);
+        $data = $this->usuario_model->getUsuarioById($idUsuario);
 
         // Retornando o JSON
         echo json_encode($data);
@@ -198,7 +200,7 @@ class Usuario extends CI_Controller
     public function atualizarUsuario()
     {
         // Recebendo o ID do usuário que sofrerá a atualização
-        $data = $this->usuario_model->atualizarUsuario(array('idUsuario' => $this->input->post('idUsuario')));
+        $this->usuario_model->atualizarUsuario(array('idUsuario' => $this->input->post('idUsuario')));
 
         // Retornando o JSON
         echo json_encode(array('status' => TRUE));

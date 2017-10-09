@@ -55,6 +55,7 @@ $route['redefinir-senha'] = 'home/redefinirSenha';
 $route['dashboard'] = 'home/dashboard';
 $route['dashboard/equipe'] = 'home/equipe';
 $route['dashboard/municipios'] = 'home/municipio';
+$route['dashboard/softwares'] = 'home/software';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 // Rotas para o controller Usuario
@@ -68,3 +69,13 @@ $route['atualizar-senha'] = 'usuario/buscarEmail';
 $route['excluir-usuario/(:any)'] = 'usuario/excluirUsuario/$1';
 // Rotas para o controller Municipio
 $route['criar-municipio'] = 'municipio/criarMunicipio';
+$route['visualizar-municipio/(:any)'] = 'municipio/visualizarMunicipio/$1';
+$route['editar-municipio/(:any)'] = 'municipio/editarMunicipio/$1';
+$route['atualizar-municipio'] = 'municipio/atualizarMunicipio';
+$route['excluir-municipio/(:any)'] = 'municipio/excluirMunicipio/$1';
+// Rotas oara o controller software
+$route['criar-software'] = 'software/criarSoftware';
+$route['visualizar-software/(:any)'] = 'software/visualizarSoftware/$1';
+$route['editar-software/(:any)'] = 'software/editarSoftware/$1';
+$route['atualizar-software'] = 'software/atualizarSoftware';
+$route['excluir-software/(:any)'] = 'software/excluirSoftware/$1';

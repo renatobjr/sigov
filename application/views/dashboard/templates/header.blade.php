@@ -17,9 +17,6 @@
             padding-top: 6em;
         }
     </style>
-    {{-- JS --}}
-    <script src="{{ base_url('resources/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ base_url('resources/js/bootstrap.min.js') }}"></script>
 
     {{-- Verificação de acesso --}}
     @if(!isset($_SESSION['isLogged']))
@@ -51,19 +48,38 @@
                         <li><a href="{{ base_url('dashboard/equipe') }}"><i class="fa fa-users fa-fw"></i> Equipe</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
-                        <li><li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li></li>
+                        <li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ base_url('dashboard/softwares') }}"><i class="fa fa-microchip fa-fw"></i> Softwares</a></li>
                     </ul>
                 @endif
-                {{-- Menu para Cadastro de municipios: disponivel somente para o PLI[3] --}}
+                {{-- Menu para Cadastro de municipios e equipe: disponivel somente para o PLI[3] --}}
                 @if($_SESSION['perfil'] == 2 && $_SESSION['equipe'] == 2)
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ base_url('dashboard/municipios') }}">Municípios</a></li>
+                        <li><a href="{{ base_url('dashboard/equipe') }}"><i class="fa fa-users fa-fw"></i> Equipe</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
                     </ul>
                 @endif
-                {{-- Menu para Cadastro de software: disponivel somente para o PS[4] --}}
-                @if($_SESSION['perfil'] == 3)
+                {{-- Menu para Cadastro de software e equipe: disponivel somente para o PS[4] --}}
+                @if($_SESSION['perfil'] == 2 && $_SESSION['equipe'] == 3)
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Software</a></li>
+                        <li><a href="{{ base_url('dashboard/equipe') }}"><i class="fa fa-users fa-fw"></i> Equipe</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ base_url('dashboard/softwares') }}"><i class="fa fa-microchip fa-fw"></i> Softwares</a></li>
+                    </ul>
+                @endif
+                @if($_SESSION['perfil'] == 3 && $_SESSION['equipe'] == 2)
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ base_url('dashboard/municipios') }}"><i class="fa fa-map-pin fa-fw"></i> Municípios</a></li>
+                    </ul>
+                @endif
+                @if($_SESSION['perfil'] == 3 && $_SESSION['equipe'] == 3)
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ base_url('dashboard/softwares') }}"><i class="fa fa-microchip fa-fw"></i> Softwares</a></li>
                     </ul>
                 @endif
                 {{-- Menu do usuário --}}
@@ -71,8 +87,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user fa-fw"></i> {{ $_SESSION['nomeUsuario'] }}</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href=""><i class="fa fa-user fa-fw"></i> Perfil</a></li>
-                            <li class="divider"></li>
                             <li><a href="{{ base_url('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         </ul>
                     </li>
@@ -81,6 +95,11 @@
         </div>
     </nav>
 </header>
+{{-- JS --}}
+<script src="{{ base_url('resources/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ base_url('resources/js/bootstrap.min.js') }}"></script>
+<script src="{{ base_url('resources/js/jquery.mask.min.js') }}"></script>
+
 <main class="container-fluid">
     @yield('main')
 </main>
