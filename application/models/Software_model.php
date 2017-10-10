@@ -40,9 +40,10 @@ class Software_model extends CI_Model
     public function getAllSoftwares()
     {
         // Recuperando todos os dados dos softwares catalogados
-        $this->db->select('p.idPrograma, p.nomeSoftware, u.nomeUsuario, p.criadoEm');
+        $this->db->select('p.idPrograma, p.nomeSoftware, u.nomeUsuario, p.criadoEm, a.descricaoArea');
         $this->db->from('programas p');
-        $this->db->join('usuarios u','responsavelCadastro = idUsuario');
+        $this->db->join('usuarios u', 'responsavelCadastro = idUsuario');
+        $this->db->join('areaSoftwares a', 'p.areaSoftware = a.idAreaSoftware');
         $this->db->order_by('criadoEm','DESC');
         $query = $this->db->get();
 

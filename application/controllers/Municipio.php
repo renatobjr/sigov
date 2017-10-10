@@ -42,8 +42,8 @@ class Municipio extends CI_Controller
     {
         // Definindo as validações para o formulário de criação de novos municipios
         $this->form_validation->set_rules('nomeMunicipio','Nome do Município','required|xss_clean');
-        $this->form_validation->set_rules('densidadeDemografica','Densidade Demográfica','required|xss_clean|numeric|decimal');
-        $this->form_validation->set_rules('pibPerCapta','PIB per Capta','required|xss_clean|numeric|decimal');
+        $this->form_validation->set_rules('densidadeDemografica','Densidade Demográfica','required|xss_clean');
+        $this->form_validation->set_rules('pibPerCapta','PIB per Capta','required|xss_clean');
 
         // Realizando as verificações do formulário
         if($this->form_validation->run() === FALSE) {

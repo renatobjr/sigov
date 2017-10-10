@@ -7,21 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Municipio_model extends CI_Model
 {
-    private $idMunicipio;
-    private $nomeMunicipio;
-    private $densidadeDemografica;
-    private $pibPerCapta;
-    private $sistemaSaude;
-    private $sistemaEducacao;
-    private $sistemaPatrimonio;
-    private $sistemaExecucao;
-    private $sistemaFolhaPagamento;
-    private $sistemaFuncionarios;
-    private $responsavelCadastro;
-    private $criadoEm;
-    private $responsavelEdicao;
-    private $editadoEm;
-    /*
+   /*
      |------------------------------------------------------------------------
      | Métodos acessórios
      |------------------------------------------------------------------------
@@ -141,29 +127,17 @@ class Municipio_model extends CI_Model
      */
     public function criarMunicipio()
     {
-        // Tratando checkboxes evitando entradas inconsistentes
-        $this->sistemaSaude             = (isset($_POST['sistemaSaude']) ? 1 : 0);
-        $this->sistemaEducacao          = (isset($_POST['sistemaEducacao']) ? 1 : 0);
-        $this->sistemaPatrimonio        = (isset($_POST['sistemaPatrimonio']) ? 1 : 0);
-        $this->sistemaExecucao          = (isset($_POST['sistemaExecucao']) ? 1 : 0);
-        $this->sistemaFolhaPagamento    = (isset($_POST['sistemaFolhaPagamento']) ? 1 : 0);
-        $this->sistemaFuncionarios      = (isset($_POST['sistemaFuncionarios']) ? 1 : 0);
-
-        // Tratando os campos com formato numerico
-        $this->densidadeDemografica->str_replace(',','.',$_POST['densidadeDemografica']);
-        $this->pibPerCapta->str_replace(',','.',str_replace('.','',$_POST['pibPerCapta']));
-
         // Recebendo os dados obtidos a partir do formulário de criação de municipios
         $dataMunicipio = array(
             'nomeMunicipio'         => $_POST['nomeMunicipio'],
-            'densidadeDemografica'  => $this->densidadeDemografica,
-            'pibPerCapta'           => $this->pibPerCapta,
-            'sistemaSaude'          => $this->sistemaSaude,
-            'sistemaEducacao'       => $this->sistemaEducacao,
-            'sistemaPatrimonio'     => $this->sistemaPatrimonio,
-            'sistemaExecucao'       => $this->sistemaExecucao,
-            'sistemaFolhaPagamento' => $this->sistemaFolhaPagamento,
-            'sistemaFuncionarios'   => $this->sistemaFuncionarios,
+            'densidadeDemografica'  => str_replace(',','.',str_replace('.','',$_POST['densidadeDemografica'])),
+            'pibPerCapta'           => str_replace(',','.',str_replace('.','',$_POST['pibPerCapta'])),
+            'sistemaSaude'          => (isset($_POST['sistemaSaude']) ? 1 : 0),
+            'sistemaEducacao'       => (isset($_POST['sistemaEducacao']) ? 1 : 0),
+            'sistemaPatrimonio'     => (isset($_POST['sistemaPatrimonio']) ? 1 : 0),
+            'sistemaExecucao'       => (isset($_POST['sistemaExecucao']) ? 1 : 0),
+            'sistemaFolhaPagamento' => (isset($_POST['sistemaFolhaPagamento']) ? 1 : 0),
+            'sistemaFuncionarios'   => (isset($_POST['sistemaFuncionarios']) ? 1 : 0),
             'responsavelCadastro'   => $_POST['responsavelCadastro'],
             'criadoEm'              => date('Y-m-d H:i:s')
         );

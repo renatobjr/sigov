@@ -11,10 +11,6 @@ class Usuario_model extends CI_Model
     /**
      * Variáveis globais referentes aos campos da tabela usuarios
      */
-    private $idUsuario;
-    private $equipe;
-    private $perfil;
-    private $nomeUsuario;
     private $emailUsuario;
     private $password;
     private $token;

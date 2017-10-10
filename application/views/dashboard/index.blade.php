@@ -76,16 +76,14 @@
                                     <th>Município</th>
                                     <th>Pesquisador Responsável</th>
                                     <th>Adicionado em</th>
-                                    <th colspan="3" class="text-center">Opções</th>
+                                    <th>PIB per Capta</th>
                                 </tr>
                                 @foreach($municipios as $municipio)
                                     <tr>
                                         <td>{{ $municipio['nomeMunicipio'] }}</td>
                                         <td>{{ $municipio['nomeUsuario'] }}</td>
                                         <td>{{ date('d/m/Y',strtotime($municipio['criadoEm'])) }} às {{ date('H:i',strtotime($municipio['criadoEm'])) }}</td>
-                                        <td><button class="btn btn-primary btn-sm center-block" onclick="visualizarMunicipio({{ $municipio['idMunicipio'] }})"><i class="fa fa-eye fa-fw"></i></button></td>
-                                        <td><button class="btn btn-danger btn-sm center-block excluirMunicipio" data-toggle="modal" data-target=".modalMunicipio" data-id="{{ $municipio['idMunicipio'] }}"><i class="fa fa-trash-o fa-fw"></i></button></td>
-                                        <td><button class="btn btn-success btn-sm center-block" onclick="editarMunicipio({{ $municipio['idMunicipio'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                        <td>R$ <span class="money">{{ $municipio['pibPerCapta'] }}</span></td>
                                     </tr>
                                 @endforeach
                             </table>
@@ -120,16 +118,14 @@
                                     <th>Software</th>
                                     <th>Pesquisador Responsável</th>
                                     <th>Adicionado em</th>
-                                    <th colspan="3" class="text-center">Opções</th>
+                                    <th>Área do Software</th>
                                 </tr>
                                 @foreach($softwares as $software)
                                     <tr>
                                         <td>{{ $software['nomeSoftware'] }}</td>
                                         <td>{{ $software['nomeUsuario'] }}</td>
                                         <td>{{ date('d/m/Y',strtotime($software['criadoEm'])) }} às {{ date('H:i',strtotime($software['criadoEm'])) }}</td>
-                                        <td><button class="btn btn-primary btn-sm center-block" onclick="visualizarSoftware({{ $software['idPrograma'] }})"><i class="fa fa-eye fa-fw"></i></button></td>
-                                        <td><button class="btn btn-danger btn-sm center-block excluirSoftware" data-toggle="modal" data-target=".modalSoftware" data-id="{{ $software['idPrograma'] }}"><i class="fa fa-trash-o fa-fw"></i></button></td>
-                                        <td><button class="btn btn-success btn-sm center-block" onclick="editarSoftware({{ $software['idPrograma'] }})"><i class="fa fa-pencil fa-fw"></i></button></td>
+                                        <td>{{ $software['descricaoArea'] }}</td>
                                     </tr>
                                 @endforeach
                             </table>
@@ -139,4 +135,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Função para formatar inputs
+        $('document').ready(function(){
+            $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        });
+    </script>
 @endsection

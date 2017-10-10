@@ -177,6 +177,7 @@
                         <span class="sistemaFolhaPagamento"></span>
                         <span class="sistemaFuncionarios"></span>
                         <h5>Recomendações de Software</h5>
+
                     </div>
                 </div>
             </div>
