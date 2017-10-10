@@ -24,6 +24,7 @@ class Software_model extends CI_Model
      | - getIdSoftware:         recupera os dados de um software a partir do seu
      |                          ID e permite a sua edição
      | - countSoftwaresByArea:  Conta os softwares a partir de sua área
+     | - countSoftwares:        Conta os softwares cadastrados o sistema
      |
      |------------------------------------------------------------------------
      */
@@ -118,6 +119,23 @@ class Software_model extends CI_Model
 
         // Retornando o array com a contagem dos softwares por area
         return $query->row_array();
+    }
+    /**
+     * Function countSoftwares()
+     *
+     * Método responsável pela contagem de softwares cadatrados no DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return array
+     */
+    public function countSoftwares()
+    {
+        // Contando softwares no DB
+        $query = $this->db->count_all('programas');
+
+        // Retornado o valor da contagem
+        return $query;
     }
     /*
      |------------------------------------------------------------------------

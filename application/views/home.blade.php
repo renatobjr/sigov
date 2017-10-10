@@ -11,7 +11,7 @@
     <title>{{ $title }}</title>
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ base_url('resources/css/bootstrap.css') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url('resources/assets/sigov.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url('resources/assets/favicon.png') }}">
     <style>
         body{
             padding-top: 8em;
@@ -30,7 +30,7 @@
             {{-- Construção do painel --}}
             <div class="panel panel-default">
                 {{-- Logo --}}
-                <div class="panel-heading"><img class="center-block" src="{{ base_url('resources/assets/sigov.svg') }}" alt="sigov" width="30%"></div>
+                <div class="panel-heading"><img class="center-block" src="{{ base_url('resources/assets/sigov.png') }}" alt="sigov" width="30%"></div>
                 <ul class="list-group">
                     {{-- Inicio do formulário de login --}}
                     {!! form_open('login') !!}

@@ -176,7 +176,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Saúde</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['saude']) ? 0 : $totalSoftware['saude']}}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['saude']) ? 0 : $totalSoftwareByArea['saude']}}</div>
                         </div>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Educação</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['educacao']) ? 0 : $totalSoftware['educacao'] }}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['educacao']) ? 0 : $totalSoftwareByArea['educacao'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Patrimônio</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['patrimonio']) ? 0 : $totalSoftware['patrimonio'] }}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['patrimonio']) ? 0 : $totalSoftwareByArea['patrimonio'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Execução</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['execucao']) ? 0 : $totalSoftware['execucao'] }}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['execucao']) ? 0 : $totalSoftwareByArea['execucao'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Pagamento</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['folhaPagamento']) ? 0 : $totalSoftware['folhaPagamento'] }}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['folhaPagamento']) ? 0 : $totalSoftwareByArea['folhaPagamento'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                         </span>
                         <div class="info-box-content">
                             <span><strong>Funcionários</strong></span>
-                            <div class="info-box-number">{{ empty($totalSoftware['cadastroFuncionarios']) ? 0 : $totalSoftware['cadastroFuncionarios'] }}</div>
+                            <div class="info-box-number">{{ empty($totalSoftwareByArea['cadastroFuncionarios']) ? 0 : $totalSoftwareByArea['cadastroFuncionarios'] }}</div>
                         </div>
                     </div>
                 </div>

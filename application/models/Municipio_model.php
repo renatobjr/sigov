@@ -34,7 +34,7 @@ class Municipio_model extends CI_Model
      |                      ID e o responsável pelo cadastro
      | - getIdMunicipio:    recupera os dados de um municipio a partir do seu
      |                      ID e permite a sua edição
-     |
+     | - countMunicipios:   conta o total de municipios cadastrados no sistema
      |
      |------------------------------------------------------------------------
      */
@@ -105,6 +105,23 @@ class Municipio_model extends CI_Model
 
         // Retonando a linha relativa ao municipio
         return $query->row();
+    }
+    /**
+     * Function countMunicipios()
+     *
+     * Método responsável pela contagem de municipios cadatrados no DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return array
+     */
+    public function countMunicipios()
+    {
+        // Contando municipios no DB
+        $query = $this->db->count_all('municipios');
+
+        // Retornado o valor da contagem
+        return $query;
     }
     /*
      |------------------------------------------------------------------------

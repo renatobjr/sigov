@@ -31,7 +31,12 @@ class Home extends CI_Controller
         $this->data['softwares'] = $this->software_model->getAllSoftwares();
 
         // Criando um array com a contagem dos softwares
-        $this->data['totalSoftware'] = $this->software_model->countSoftwaresByArea();
+        $this->data['totalSoftwareByArea'] = $this->software_model->countSoftwaresByArea();
+
+        // Criando um array para a contagem de usuarios, municipios e softwares
+        $this->data['totalUsuarios'] = $this->usuario_model->countUsuarios();
+        $this->data['totalMunicipios'] = $this->municipio_model->countMunicipios();
+        $this->data['totalSoftwares'] = $this->software_model->countSoftwares();
     }
     /**
      * Variável global para informações compartilhadas entre as views

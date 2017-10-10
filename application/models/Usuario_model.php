@@ -31,6 +31,7 @@ class Usuario_model extends CI_Model
      | - getAllPs:          recupera os dados de todos os pesquisadores do PS
      | - verificarToken:    Verifica o token obtido via $_POST autorizando a
      |                      inserção da senha
+     | - countUsuarios:     conta o total de usuarios cadastrados no sistema 
      |------------------------------------------------------------------------
      */
     /**
@@ -128,6 +129,23 @@ class Usuario_model extends CI_Model
         } else {
             return FALSE;
         }
+    }
+    /**
+     * Function countUsuarios()
+     *
+     * Método responsável pela contagem de usuarios cadatrados no DB
+     *
+     * @since 1.0
+     * @author Renato Bonfim Jr.
+     * @return array
+     */
+    public function countUsuarios()
+    {
+        // Contando usuários no DB
+        $query = $this->db->count_all('usuarios');
+
+        // Retornado o valor da contagem
+        return $query;
     }
     /*
      |------------------------------------------------------------------------

@@ -21,7 +21,7 @@
                 </span>
                 <div class="info-box-content">
                     <span><strong>Usuários</strong></span>
-                    <div class="info-box-number">0</div>
+                    <div class="info-box-number">{{ $totalUsuarios }}</div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 </span>
                 <div class="info-box-content">
                     <span><strong>Municípios</strong></span>
-                    <div class="info-box-number">0</div>
+                    <div class="info-box-number">{{ $totalMunicipios }}</div>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 </span>
                 <div class="info-box-content">
                     <span><strong>Softwares</strong></span>
-                    <div class="info-box-number">0</div>
+                    <div class="info-box-number">{{ $totalSoftwares }}</div>
                 </div>
             </div>
         </div>
